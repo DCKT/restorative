@@ -1,6 +1,6 @@
 {
   "name": "@colisweb/restorative",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "scripts": {
     "build": "rescript build -with-deps",
     "start": "rescript build -with-deps -w",
