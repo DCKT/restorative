@@ -1,6 +1,6 @@
 {
   "name": "restorative",
-  "version": "0.3.2",
+  "version": "0.5.0",
   "scripts": {
     "build": "rescript build -with-deps",
     "start": "rescript build -with-deps -w",
@@ -13,9 +13,9 @@
     "bsconfig.json"
   ],
   "keywords": [
-    "reason-react",
+    "rescript-react",
     "redux",
-    "BuckleScript"
+    "Rescript"
   ],
   "author": "Paul Shen",
   "license": "MIT",
