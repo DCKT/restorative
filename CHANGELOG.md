@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/DCKT/restorative/compare/v1.0.1...v1.0.2) (2023-10-26)
+
+
+### Bug Fixes
+
+* expose rescript.json ([43d0412](https://github.com/DCKT/restorative/commit/43d041294392ec4e2e2989d7d5eb43b58166429b))
+
 ## [1.0.1](https://github.com/DCKT/restorative/compare/v1.0.0...v1.0.1) (2023-10-26)
 
 
