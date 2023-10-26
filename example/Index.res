@@ -25,42 +25,39 @@ module Example = {
   let make = () => {
     React.useEffect0(() => {
       Js.log(getState())
-      subscribe(state => Js.log(state), ()) |> ignore
-      subscribeWithSelector(state => state.count, count => Js.log(count), ()) |> ignore
+      subscribe(state => Js.log(state))->ignore
+      subscribeWithSelector(state => state.count, count => Js.log(count))->ignore
       subscribeWithSelector(
         state => Belt.Int.toString(state.count + 1),
         count => Js.log(count),
-        (),
-      ) |> ignore
+      )->ignore
       subscribeWithSelector(
         state => {countDividedBy5: state.count / 5},
         derivedState => Js.log2("Derived", derivedState),
         ~areEqual=(a, b) => a == b,
-        (),
-      ) |> ignore
+      )->ignore
       dispatch(Increment)
 
       None
     })
 
     let state = useStore()
-    let jsonState = useStoreWithSelector(jsonStringify, ())
-    let changingSelector = useStoreWithSelector(
-      state => jsonState ++ (" " ++ Belt.Int.toString(state.count)),
-      (),
+    let jsonState = useStoreWithSelector(jsonStringify)
+    let changingSelector = useStoreWithSelector(state =>
+      jsonState ++ (" " ++ Belt.Int.toString(state.count))
     )
 
     <div>
       <div> {React.string("Count: " ++ Belt.Int.toString(state.count))} </div>
       <div> {React.string("JSON: " ++ jsonState)} </div>
       <div> {React.string("Changing selector: " ++ changingSelector)} </div>
-      <div> <button onClick={_ => dispatch(Increment)}> {React.string("Increment")} </button> </div>
+      <div>
+        <button onClick={_ => dispatch(Increment)}> {React.string("Increment")} </button>
+      </div>
     </div>
   }
 }
 
 let root = ReactDOM.Client.createRoot(ReactDOM.querySelector("#root")->Belt.Option.getUnsafe)
-
-
 
 root->ReactDOM.Client.Root.render(<Example />)

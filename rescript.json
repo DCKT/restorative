@@ -12,6 +12,7 @@
       "type": "dev"
     }
   ],
+  "uncurried": true,
   "package-specs": [
     {
       "module": "commonjs",

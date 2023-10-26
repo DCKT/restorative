@@ -1,6 +1,6 @@
 {
   "name": "@colisweb/restorative",
-  "version": "1.0.1",
+  "version": "2.0.0-rc.0",
   "private": "false",
   "scripts": {
     "build": "rescript build -with-deps",
@@ -23,7 +23,7 @@
   "peerDependencies": {
     "@rescript/react": "0.11.0",
     "react": ">=16.8",
-    "rescript": "10.1.4"
+    "rescript": "11.0.0-rc.4"
   },
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.8",
@@ -34,6 +34,6 @@
     "parcel-bundler": "^1.12.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "rescript": "10.1.2"
+    "rescript": "11.0.0-rc.4"
   }
 }
