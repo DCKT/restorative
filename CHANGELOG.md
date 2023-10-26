@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/DCKT/restorative/compare/v1.0.0...v1.0.1) (2023-10-26)
+
+
+### Bug Fixes
+
+* add npmrc ([b650ee8](https://github.com/DCKT/restorative/commit/b650ee83023825b130231d015ee9d9512d9c04a8))
+
 # 1.0.0 (2023-10-26)
 
 
