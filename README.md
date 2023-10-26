@@ -14,11 +14,13 @@ Similar projects in JavaScript include [Redux](https://redux.js.org/) and [zusta
 
 ## Installation
 
-```
-npm install --save restorative
+```bash
+npm install --save @dck/restorative
+# or
+yarn add @dck/restorative
 ```
 
-Add to `bsconfig.json`
+Add to `rescript.json`
 
 ```
 "bs-dependencies": [
@@ -28,11 +30,11 @@ Add to `bsconfig.json`
 
 ## Create store
 
-```reason
-type state = int;
+```rescript
+type state = int
 type action =
   | Increment
-  | Decrement;
+  | Decrement
 
 let api =
   Restorative.createStore(0, (state, action) =>
@@ -40,43 +42,43 @@ let api =
     | Increment => state + 1
     | Decrement => state - 1
     }
-  );
+  )
 ```
 
 ## Basic subscription
 
-```reason
-let {dispatch, subscribe, getState} = api;
-let unsubscribe = subscribe(state => Js.log(state));
-dispatch(Increment); // calls subscriptions
-getState(); // 1
-unsubscribe();
+```rescript
+let {dispatch, subscribe, getState} = api
+let unsubscribe = subscribe(state => Js.log(state))
+dispatch(Increment) // calls subscriptions
+getState() // 1
+unsubscribe()
 ```
 
 ## React hook
 
-```reason
-let {useStore, dispatch} = api;
+```rescript
+let {useStore, dispatch} = api
 
-[@react.component]
+@react.component
 let make = () => {
-  let state = useStore();
+  let state = useStore()
   <button onClick={_ => dispatch(Increment)}>
     {React.string(string_of_int(state))}
-  </button>;
-};
+  </button>
+}
 ```
 
 ## Selector
 
-```reason
+```rescript
 type state = {
   a: int,
   b: int,
-};
+}
 type action =
   | IncrementA
-  | IncrementB;
+  | IncrementB
 
 let {subscribeWithSelector, dispatch} =
   createStore({a: 0, b: 0}, (state, action) =>
@@ -84,39 +86,38 @@ let {subscribeWithSelector, dispatch} =
     | IncrementA => {...state, a: state.a + 1}
     | IncrementB => {...state, b: state.b + 1}
     }
-  );
+  )
 
-subscribeWithSelector(state => state.a, a => Js.log(a), ());
-dispatch(IncrementA); // calls listener
-dispatch(IncrementB); // does not call listener
+subscribeWithSelector(state => state.a, a => Js.log(a))
+dispatch(IncrementA) // calls listener
+dispatch(IncrementB) // does not call listener
 ```
 
 ### useStoreWithSelector
 
-```reason
-[@react.component]
+```rescript
+@react.component
 let make = () => {
-  let a = useStoreWithSelector(state => state.a, ());
+  let a = useStoreWithSelector(state => state.a)
   // Only updates when a changes
   ...
-};
+}
 ```
 
 ## Equality
 
 `Restorative` will not call listeners if the selected state has not "changed" (entire state if no selector). By default, uses `Object.is` for equality checking. All `subscribe` and `useStore` functions take an optional `~areEqual: ('state, 'state) => bool`.
 
-```reason
+```rescript
 useStoreWithSelector(
-  state => [|state.a, state.b|],
-  ~areEqual=(a, b) => a == b,
-  ()
-);
+  state => [state.a, state.b],
+  ~areEqual=(a, b) => a == b
+)
 ```
 
 ### Comparison with JavaScript libraries
 
-We get all the benefits of Reason's great type system. Instead of plain JavaScript objects, we use variants to model actions. All operations have sound types and some work is moved to compile time (e.g. action creators).
+We get all the benefits of rescript's great type system. Instead of plain JavaScript objects, we use variants to model actions. All operations have sound types and some work is moved to compile time (e.g. action creators).
 
 ### Comparison with React Context
 
