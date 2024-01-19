@@ -23,7 +23,7 @@ module Example = {
 
   @react.component
   let make = () => {
-    React.useEffect0(() => {
+    React.useEffect(() => {
       Js.log(getState())
       subscribe(state => Js.log(state))->ignore
       subscribeWithSelector(state => state.count, count => Js.log(count))->ignore
@@ -39,7 +39,7 @@ module Example = {
       dispatch(Increment)
 
       None
-    })
+    }, [])
 
     let state = useStore()
     let jsonState = useStoreWithSelector(jsonStringify)

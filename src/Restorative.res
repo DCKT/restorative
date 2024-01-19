@@ -57,12 +57,12 @@ let createStore = (initialState: 'state, reducer: reducer<'state, 'action>): api
 
   let useStore = (~areEqual=?, ()) => {
     let (_, forceUpdate) = React.useState(() => 1)
-    React.useLayoutEffect0(() => {
+    React.useLayoutEffect(() => {
       let unsubscribe = subscribe(_ => forceUpdate(x => x + 1), ~areEqual?)
       // The state may have changed between render and this effect.
       forceUpdate(x => x + 1)
       Some(() => unsubscribe())
-    })
+    }, [])
     state.contents
   }
 
@@ -80,19 +80,19 @@ let createStore = (initialState: 'state, reducer: reducer<'state, 'action>): api
     } else {
       selector(state.contents)
     }
-    React.useLayoutEffect1(() => {
+    React.useLayoutEffect(() => {
       sliceRef.current = Some(slice)
 
       None
     }, [slice])
 
-    React.useLayoutEffect1(() => {
+    React.useLayoutEffect(() => {
       selectorRef.current = selector
       None
     }, [selector])
     let (_, forceUpdate) = React.useState(() => 1)
 
-    React.useLayoutEffect0(() => {
+    React.useLayoutEffect(() => {
       let unsubscribe = subscribeWithSelector(
         state => selectorRef.current(state),
         slice => {
@@ -106,7 +106,7 @@ let createStore = (initialState: 'state, reducer: reducer<'state, 'action>): api
       // The state may have changed between render and this effect.
       forceUpdate(x => x + 1)
       Some(() => unsubscribe())
-    })
+    }, [])
     slice
   }
 
