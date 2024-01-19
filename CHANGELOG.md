@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/DCKT/restorative/compare/v1.0.3...v1.1.0) (2024-01-19)
+
+
+### Features
+
+* upgrade rescript react version + add .resi ([43628b4](https://github.com/DCKT/restorative/commit/43628b4f1a2b61b959fb93db15b56499652b7cbe))
+
 ## [1.0.3](https://github.com/DCKT/restorative/compare/v1.0.2...v1.0.3) (2023-10-26)
 
 
